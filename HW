@@ -1,0 +1,48 @@
+
+enum EnumErrors: Error {
+    case error400
+    case error404
+    case error500
+}
+
+var error400: Bool = false
+var error404: Bool = true
+var error500: Bool = false
+ 
+do {
+    if error400 {
+        throw EnumErrors.error400
+    }
+ 
+    if error404 {
+        throw EnumErrors.error404
+    }
+ 
+    if error500 {
+        throw EnumErrors.error500
+    }
+} catch EnumErrors.error400 {
+    print("Error 400! Bad Request!")
+} catch EnumErrors.error404 {
+    print("Error 404! Not Found!")
+} catch EnumErrors.error500 {
+    print("Error 500! Internal Server Error!")
+}
+
+
+
+func autoError() throws {
+    if error400 { throw EnumErrors.error400 }
+    if error404 { throw EnumErrors.error404 }
+    if error500 { throw EnumErrors.error500 }
+    
+}
+
+
+
+func checkTwoValues<T: Equatable> (_ a: T, _ b: T) {
+    if a == b {print("Yes")}
+    else {print("No")}
+}
+checkTwoValues(5, 5.6)
+
